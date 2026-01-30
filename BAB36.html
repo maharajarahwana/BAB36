@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>BAB36</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>BAB1</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Latihan Kosakata</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .card {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  input {
+    width: 90%;
+    padding: 8px;
+    margin-top: 15px;
+  }
+  button {
+    margin-top: 20px;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+  .result {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .wrong { color: red; }
+  .correct { color: green; }
+  ol { text-align:left; max-height:400px; overflow:auto; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2 id="question"></h2>
+  <input type="text" id="answerInput" placeholder="Tulis jawaban di sini">
+  <br>
+  <button id="nextBtn">Selanjutnya</button>
+</div>
+
+<script>
+let questions = [
+{ soal: "출하 관리", jawaban: "pengelolaan pengiriman" },
+{ soal: "지게차", jawaban: "forklift" },
+{ soal: "및", jawaban: "dan" },
+{ soal: "핸드파렛트", jawaban: "palet tangan" },
+{ soal: "싸다", jawaban: "mengepak" },
+{ soal: "대차", jawaban: "troli" },
+{ soal: "포장하다", jawaban: "membungkus" },
+{ soal: "출하량", jawaban: "volume pengiriman" },
+{ soal: "담다 / 넣다", jawaban: "memasukkan" },
+{ soal: "맞추다", jawaban: "menyesuaikan" },
+{ soal: "분류하다", jawaban: "menyortir" },
+{ soal: "수량", jawaban: "jumlah" },
+{ soal: "묶다", jawaban: "mengikat" },
+{ soal: "떨어지다", jawaban: "terjatuh" },
+{ soal: "밀봉하다", jawaban: "menyegel" },
+{ soal: "빠짐없이", jawaban: "tanpa kecuali" },
+{ soal: "라벨을 붙이다", jawaban: "menempelkan label" },
+{ soal: "밧줄", jawaban: "tali tambang" },
+{ soal: "나르다", jawaban: "mengangkut" },
+{ soal: "중량", jawaban: "berat" },
+{ soal: "쌓다", jawaban: "menumpuk" },
+{ soal: "주의하다", jawaban: "berhati-hati" },
+{ soal: "포장 기준서", jawaban: "pedoman pembungkusan" },
+{ soal: "수고하다", jawaban: "bekerja keras" },
+{ soal: "완충재", jawaban: "bahan penyangga" },
+{ soal: "한부전해주세요", jawaban: "sampaikan salam saya" },
+{ soal: "방청지", jawaban: "kertas anti karat" },
+{ soal: "무역", jawaban: "perdagangan" },
+{ soal: "파렛트", jawaban: "palet" },
+{ soal: "특성", jawaban: "karakteristik" },
+{ soal: "깨지다", jawaban: "pecah" },
+{ soal: "천연자원", jawaban: "sumber daya alam" },
+{ soal: "꼼꼼하다", jawaban: "teliti" },
+{ soal: "정부", jawaban: "pemerintah" },
+{ soal: "크기", jawaban: "ukuran" },
+{ soal: "지속적으로", jawaban: "secara terus menerus" },
+{ soal: "녹슬다", jawaban: "berkarat" },
+{ soal: "정책", jawaban: "kebijakan" },
+{ soal: "-별", jawaban: "berdasarkan" },
+{ soal: "성장하다", jawaban: "tumbuh" },
+{ soal: "업체", jawaban: "perusahaan" },
+{ soal: "규모", jawaban: "skala" },
+{ soal: "운송하다", jawaban: "mengangkut" },
+{ soal: "핸드카트", jawaban: "kereta tangan" },
+{ soal: "지시하다", jawaban: "memberi instruksi" },
+{ soal: "돌파하다", jawaban: "melampaui" },
+{ soal: "손상되다", jawaban: "rusak" },
+{ soal: "혁신적인", jawaban: "inovatif" },
+{ soal: "갖다 놓다", jawaban: "meletakkan" },
+{ soal: "가공하다", jawaban: "memproses" },
+{ soal: "신경을 쓰다", jawaban: "memperhatikan" },
+{ soal: "주요", jawaban: "utama" },
+{ soal: "달다", jawaban: "menutup" },
+{ soal: "원유", jawaban: "minyak bumi" },
+{ soal: "솥밥", jawaban: "nasi kukus dalam panci" },
+{ soal: "천연가스", jawaban: "gas alam" },
+{ soal: "아랫집", jawaban: "rumah bawah" },
+{ soal: "철강", jawaban: "baja" },
+{ soal: "있던", jawaban: "ada" },
+{ soal: "장비", jawaban: "perlengkapan" },
+{ soal: "낮잠", jawaban: "tidur siang" },
+{ soal: "반도체", jawaban: "semikonduktor" },
+{ soal: "꽃다발", jawaban: "buket bunga" },
+{ soal: "조선", jawaban: "perkapalan" },
+{ soal: "물류창고", jawaban: "gudang logistik" },
+{ soal: "석유화학", jawaban: "petrokimia" },
+{ soal: "입고하다", jawaban: "memasukkan barang" },
+{ soal: "출고하다", jawaban: "mengeluarkan barang" },
+{ soal: "자유무역협정", jawaban: "perjanjian perdagangan bebas" },
+{ soal: "검수하다", jawaban: "memeriksa kualitas" },
+{ soal: "체결하다", jawaban: "menandatangani" },
+{ soal: "운반하다", jawaban: "memindahkan" },
+{ soal: "장벽", jawaban: "hambatan" },
+{ soal: "싣다 / 적재하다", jawaban: "memuat" },
+{ soal: "경쟁력", jawaban: "daya saing" },
+{ soal: "내리다", jawaban: "turun" },
+{ soal: "강화하다", jawaban: "memperkuat" },
+{ soal: "출하하다", jawaban: "mengirim" },
+{ soal: "다변화", jawaban: "penganekaragaman" },
+{ soal: "납품하다", jawaban: "menyediakan barang" },
+{ soal: "적재", jawaban: "memuat / penempatan muatan" },
+];
+
+// Acak soal
+questions = questions.sort(() => Math.random() - 0.5);
+
+let index = 0;
+let score = 0;
+let userAnswers = [];
+
+const questionEl = document.getElementById("question");
+const answerInput = document.getElementById("answerInput");
+const nextBtn = document.getElementById("nextBtn");
+const card = document.querySelector(".card");
+
+function showQuestion() {
+  questionEl.textContent = "Soal " + (index + 1) + ": " + questions[index].soal;
+  answerInput.value = "";
+  answerInput.focus();
+}
+
+nextBtn.addEventListener("click", () => {
+  const userAnswer = answerInput.value.trim().toLowerCase();
+  userAnswers[index] = userAnswer; // simpan jawaban sesuai index
+
+  if (userAnswer === questions[index].jawaban) {
+    score++;
+  }
+
+  index++;
+  if (index < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+});
+
+function showResult() {
+  let answerList = "";
+  questions.forEach((q, i) => {
+    if (userAnswers[i] === q.jawaban) {
+      answerList += `<li>${q.soal} = <span class="correct">${q.jawaban}</span></li>`;
+    } else {
+      answerList += `<li>${q.soal} = <span class="correct">${q.jawaban}</span><br>
+                     Jawaban kamu: <span class="wrong">${userAnswers[i] || "(kosong)"}</span></li>`;
+    }
+  });
+
+  card.innerHTML = `
+    <h2>Hasil</h2>
+    <p class="result">Nilai: ${score} / ${questions.length}</p>
+    <hr>
+    <p>Kunci Jawaban:</p>
+    <ol>${answerList}</ol>
+  `;
+}
+
+showQuestion();
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
